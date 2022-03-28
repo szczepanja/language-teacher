@@ -15,10 +15,13 @@ object TranslatorTest extends App {
   val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
   val fileContent = Source.fromFile(fileName).getLines
 
+  case class Words(a: String, b: Int)
+
   def getWord(words: List[String]) = {
-    val lines = words.flatMap(_.split("//W+"))
-    lines.flatMap(_.split("\\W+")).foreach(println)
+    val lines: Seq[String] = words.flatMap(_.split("//W+").toList)
+    val groupedWords = lines.grouped(1).toList.foreach(println)
   }
+
   getWord(fileContent.toList)
 
   val polish: Seq[String] = Seq("Książka", "Drzewo")
@@ -27,5 +30,5 @@ object TranslatorTest extends App {
   val actual = translator.translate(polish, english)
   val expected = Seq(("Książka", " Book"), ("Drzewo", " Tree"))
 
-//  println(s"Received: $actual, expected: $expected")
+  //  println(s"Received: $actual, expected: $expected")
 }
