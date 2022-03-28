@@ -15,11 +15,19 @@ object TranslatorTest extends App {
   val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
   val fileContent = Source.fromFile(fileName).getLines
 
-  case class Words(a: String, b: Int)
+  case class Words(a: String, b: List[String])
 
   def getWord(words: List[String]) = {
-    val lines: Seq[String] = words.flatMap(_.split("//W+").toList)
-    val groupedWords = lines.grouped(1).toList.foreach(println)
+    val lines = words.flatMap(_.split("//W+").toList).flatMap(_.split("\\W+"))
+    val groupedLines = lines.grouped(2).toList
+    val firstList = groupedLines.head
+
+    val firstPair = (firstList.head, firstList.tail)
+    def swap(z: (String, List[String])) = {
+      (z._2.mkString(" "), z._1)
+    }
+
+    swap(firstPair)
   }
 
   getWord(fileContent.toList)
