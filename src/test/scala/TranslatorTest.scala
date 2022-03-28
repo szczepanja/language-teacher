@@ -13,7 +13,13 @@ Publish the project to GitHub and announce on slack.
 object TranslatorTest extends App {
   val translator = new Translator
   val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
-  val fileContent: Unit = Source.fromFile(fileName).getLines.foreach(println)
+  val fileContent = Source.fromFile(fileName).getLines
+
+  def getWord(words: List[String]) = {
+    val lines = words.flatMap(_.split("//W+"))
+    lines.flatMap(_.split("\\W+")).foreach(println)
+  }
+  getWord(fileContent.toList)
 
   val polish: Seq[String] = Seq("Książka", "Drzewo")
   val english: Seq[String] = Seq("Book", "Tree")
@@ -21,8 +27,5 @@ object TranslatorTest extends App {
   val actual = translator.translate(polish, english)
   val expected = Seq(("Książka", " Book"), ("Drzewo", " Tree"))
 
-  println(s"Received: $actual, expected: $expected")
-  println(assert(actual == expected))
-
-  println(translator.translate(polish, english))
+//  println(s"Received: $actual, expected: $expected")
 }
