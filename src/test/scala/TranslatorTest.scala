@@ -12,6 +12,8 @@ Publish the project to GitHub and announce on slack.
 
 object TranslatorTest extends App {
   val translator = new Translator
+  val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
+  val fileContent: Unit = Source.fromFile(fileName).getLines.foreach(println)
 
   val polish: Seq[String] = Seq("Książka", "Drzewo")
   val english: Seq[String] = Seq("Book", "Tree")
