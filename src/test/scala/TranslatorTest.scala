@@ -18,11 +18,10 @@ object TranslatorTest extends App {
   val polish: Seq[String] = Seq("Książka", "Drzewo")
   val english: Seq[String] = Seq("Book", "Tree")
 
-  val actual: String = translator.translate(polish, english)
-  val expected = Seq(("Książka", "Book"), ("Drzewo", "Tree"))
+  val actual = translator.translate(polish, english)
+  val expected = Seq(("Książka", " Book"), ("Drzewo", " Tree"))
 
-
-  println(s"Received: $actual, got: $expected")
+  println(s"Received: $actual, expected: $expected")
   println(assert(actual == expected))
 
   println(translator.translate(polish, english))

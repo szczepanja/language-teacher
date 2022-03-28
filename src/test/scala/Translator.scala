@@ -3,16 +3,13 @@ class Translator {
     polish.zip(english)
   }
 
-  def polToEng(input: Seq[(String, String)]): String = {
+  def polToEng(input: Seq[(String, String)]): Seq[String] = {
     input.map {
-      case (polish, english) => s"($polish,$english)"
-    }.mkString
+      case (polish, english) => s"($polish, $english)"
+    }
   }
 
-  def translate(polish: Seq[String], english: Seq[String]): String = {
-    s"$polish = $english".stripMargin
-
-
-    polToEng(pairWords(polish, english))
+  def translate(polishWord: Seq[String], englishWord: Seq[String]): Seq[String] = {
+    polToEng(pairWords(polishWord, englishWord))
   }
 }
