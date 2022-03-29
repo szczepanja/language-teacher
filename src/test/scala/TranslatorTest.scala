@@ -13,24 +13,22 @@ Publish the project to GitHub and announce on slack.
 object TranslatorTest extends App {
   val translator = new Translator
   val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
-  val fileContent = Source.fromFile(fileName).getLines
+  val fileContent = Source.fromFile(fileName).getLines.toSeq
 
   case class Words(a: String, b: List[String])
 
-  def getWord(words: List[String]) = {
-    val lines = words.flatMap(_.split("//W+").toList).flatMap(_.split("\\W+"))
-    val groupedLines = lines.grouped(2).toList
-    val firstList = groupedLines.head
+  def reverseWords(words: String) = {
+    val word = words.split("\\W+")
 
-    val firstPair = (firstList.head, firstList.tail)
-    def swap(z: (String, List[String])) = {
-      (z._2.mkString(" "), z._1)
-    }
-
-    swap(firstPair)
+    word.zip(0 until word.size).foreach(tuple => if (tuple._2 == 1) println(tuple._1))
   }
 
-  getWord(fileContent.toList)
+
+  def readWords: Unit = {
+    fileContent.foreach(reverseWords)
+  }
+
+  println(readWords)
 
   val polish: Seq[String] = Seq("Książka", "Drzewo")
   val english: Seq[String] = Seq("Book", "Tree")
