@@ -15,12 +15,18 @@ object TranslatorTest extends App {
   val fileName = "C:\\Users\\a.szczepanik\\Projekty\\language-teacher\\Words"
   val fileContent = Source.fromFile(fileName).getLines.toSeq
 
-  case class Words(a: String, b: List[String])
+  def reverseWords(words: String): Any = {
+    words.split("\\W+").zip(0 until words.length).foreach(tuple => if (tuple._2 == 1) println(tuple._1))
 
-  def reverseWords(words: String) = {
-    val word = words.split("\\W+")
-
-    word.zip(0 until word.size).foreach(tuple => if (tuple._2 == 1) println(tuple._1))
+    words match {
+      case "TWIERDZENIE" => reverseWords("ASSERTION")
+      case "ZOBOWIAZANIE" => reverseWords("COMMITMENT")
+      case "POPElNIC" => reverseWords("COMMIT")
+      case "DOKUMENTACJA" => reverseWords("DOCUMENTATION")
+      case "PLIK" => reverseWords("FILE")
+      case "ZRODLO" => reverseWords("SOURCE")
+      case _ => true
+    }
   }
 
 
