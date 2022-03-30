@@ -30,11 +30,11 @@ object TranslatorTest extends App {
   }
 
 
-  def readWords: Unit = {
+  def readWords(): Unit = {
     fileContent.foreach(reverseWords)
   }
 
-  println(readWords)
+  println(readWords())
 
   val polish: Seq[String] = Seq("Książka", "Drzewo")
   val english: Seq[String] = Seq("Book", "Tree")
